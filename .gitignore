@@ -1,0 +1,5 @@
+# Ignore personal configuration
+config.py
+credentials.json
+token.json
+__pycache__/

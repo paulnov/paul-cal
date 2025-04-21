@@ -1,0 +1,92 @@
+<html>
+<head>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      line-height: 1.6;
+    }
+    table { 
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+    td, th {
+      width: 60px;
+      height: 20px;
+      text-align: center;
+      border: 1px solid #e6e6e6;
+      font-size: 13px;
+    }
+    .busy { background-color: #999999; }
+    .time-col { 
+      font-weight: 500;
+      color: #666;
+      background: #fafafa;
+      font-size: 12px;
+    }
+    th { 
+      background: #fafafa;
+      font-weight: 500;
+      color: #333;
+    }
+    h2 {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .nav {
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .nav a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
+    .legend {
+      color: #666;
+      font-size: 13px;
+      margin-top: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h2>{{ calendar_title }} ({{ start_date }} – {{ end_date }})</h2>
+<p class="nav">
+  View: 
+  <a href="availability_0.html">This Week</a> | 
+  <a href="availability_1.html">Next Week</a> |
+  <a href="availability_2.html">+2 Weeks</a> |
+  <a href="availability_3.html">+3 Weeks</a>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      {% for day in days %}
+        <th>{{ day }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for hour in hours %}
+      {% for half in [0, 30] %}
+      <tr>
+        <td class="time-col">{{ "%02d:%02d"|format(hour, half) }}</td>
+        {% for day in days %}
+          {% set key = (day, hour, half // 30) %}
+          <td class="{{ 'busy' if key in busy_blocks else '' }}"></td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+<p class="legend">White blocks indicate available time slots</p>
+</body>
+</html> 

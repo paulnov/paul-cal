@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>dev.availability.update</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <!-- DIRECT PATH TO THE PYTHON IN THE RIGHT CONDA ENVIRONMENT -->
+        <string>/Users/USERNAME/miniconda3/envs/paul-cal/bin/python</string>
+
+      <!-- DIRECT PATH TO THE APPLICATION -->
+        <string>/Users/USERNAME/paul-cal/paul-cal.py</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StartInterval</key>
+    <integer>86400</integer>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/availability.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/availability.err</string>
+
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>
